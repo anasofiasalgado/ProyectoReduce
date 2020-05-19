@@ -24,46 +24,33 @@
 
             />
 
-        <EditText
+
+        <TextView
             android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:padding="10dp"
+            android:textColor="@color/Greenish"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="Bienvenido a la aplicacion de Reduce, por favor inicie sesión con su cuenta de Google."
+            android:textAlignment="center" />
+
+        <com.google.android.gms.common.SignInButton
+            android:layout_marginTop="50dp"
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:hint="Correo Electrónico"
-            android:inputType="textEmailAddress"
-            android:textSize="12sp" />
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textSize="12sp" />
-
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="45dp"
-            android:background="@drawable/round_button"
-            android:text="@string/inicio"
-            android:id="@+id/inicio_sesion"
-            android:textColor="@color/whiteish"
-            android:textSize="12sp" />
-
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:id="@+id/crea_cuenta"
-            android:background="@drawable/round_button2"
-            android:text="@string/cuenta"
-            android:textColor="@color/whiteish"
-            android:textSize="12sp" />
 
         <LinearLayout
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="100dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -80,12 +67,6 @@
                 android:layout_height="20dp"
                 android:src="@drawable/facebook_" />
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:id="@+id/inicio_sesion_google"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/gmail_" />
 
         </LinearLayout>
 

@@ -13,7 +13,6 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.activity_datos.*
 import kotlinx.android.synthetic.main.activity_pagina_principal.*
 import kotlinx.android.synthetic.main.activity_pagina_principal.nombre_usuario
 import kotlinx.android.synthetic.main.activity_pagina_principal.view.*
@@ -30,8 +29,13 @@ class PaginaPrincipal : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pagina_principal)
 
-        val buttoncasa : ImageButton =findViewById(R.id.blog_principal) as ImageButton
+      val bundle= intent.extras
+        if(bundle!= null){
+            val nombre= bundle.getString("nombreUsuario")
+            nombre_usuario.setText(nombre)
 
+        }
+        val buttoncasa : ImageButton =findViewById(R.id.blog_principal) as ImageButton
         buttoncasa.setOnClickListener {
             var intent: Intent = Intent(this, HomeBlog::class.java)
             startActivity(intent)

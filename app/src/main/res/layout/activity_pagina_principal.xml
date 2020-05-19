@@ -36,7 +36,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingHorizontal="40dp"
         android:orientation="vertical">
 
         <TextView
@@ -47,7 +46,6 @@
             android:textSize="20sp"
             android:fontFamily="bold"
             android:layout_gravity="center" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,34 +53,36 @@
             android:textSize="12sp"
             android:layout_gravity="center" />
 
-        <LinearLayout
-            android:layout_marginTop="40dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="40dp"
-                android:background="@drawable/estrella_" />
-
-            <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:id="@+id/blog_principal"
-                android:background="@drawable/casa_" />
-
-            <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="40dp"
-                android:background="@drawable/usuario_2" />
-        </LinearLayout>
-
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_marginTop="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/estrella_" />
+
+        <ImageButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/blog_principal"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/casa_" />
+
+        <ImageButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="50dp"
+            android:background="@drawable/usuario_2" />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,10 +90,11 @@
         android:layout_gravity="center">
 
         <ImageButton
+            android:layout_marginTop="30dp"
             android:id="@+id/mas_blogs"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/mas_" />
 
     <ListView
@@ -102,9 +103,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/lista_contenido"
         android:layout_gravity="center"
-        >
+        />
 
-    </ListView>
 
     </LinearLayout>
 

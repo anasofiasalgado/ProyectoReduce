@@ -1,92 +1,142 @@
 package salgadomontoya.anasofia.myreduce
 
-import android.content.Context
+
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.actividades_celdas.view.*
-import kotlinx.android.synthetic.main.activity_agregar_actividad.*
-import kotlinx.android.synthetic.main.celda_imagen.view.*
+import android.webkit.MimeTypeMap
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.StorageTask
+
 
 class AgregarActividad : AppCompatActivity() {
 
-    var entradas = ArrayList<MasInfoBlog>()
-    var adaptador:EntradasActividadAdapter?= null
+    lateinit var tituloArticulo: EditText
+    lateinit var detalleArticulo: EditText
+    lateinit var buttonSave: Button
+    lateinit var buttonAgrega: Button
+    lateinit var imagen: ImageView
+    lateinit var filePath: Uri
+    lateinit var firebaseStore: FirebaseStorage
+    lateinit var mStorageRef: StorageReference
+    private var uploadTask: StorageTask<*>? = null
+    lateinit var mDatabaseRef: DatabaseReference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agregar_actividad)
-
         val buttonAtras : ImageButton=findViewById(R.id.regresar_atras) as ImageButton
-
         buttonAtras.setOnClickListener {
             var intent: Intent = Intent(this, PaginaPrincipal::class.java)
             startActivity(intent)
         }
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        mStorageRef = FirebaseStorage.getInstance().getReference("Images");
+        imagen= findViewById(R.id.picture_set3)
+        detalleArticulo= findViewById(R.id.detalles_aritulo)
+        tituloArticulo= findViewById(R.id.nombre_articulo)
+        buttonSave= findViewById(R.id.button_guardar)
+        buttonAgrega= findViewById(R.id.button_agrega)
+        firebaseStore = FirebaseStorage.getInstance()
 
-        cargarEntradas()
-        adaptador = EntradasActividadAdapter(this, entradas)
-        lista_entradas_actividad.adapter = adaptador
+        buttonAgrega.setOnClickListener { Filechooser() }
+
+        buttonSave.setOnClickListener {
+            uploadFile() }
     }
 
-        fun cargarEntradas(){
-            entradas.add(MasInfoBlog("Conciencia importante", "En este apartado marcan de forma concreta que el mundo debe de ser cuidado", R.drawable.articulo_2_2, "Mundo Saludable","Lucia Mendez",R.drawable.perfil2,"Cuidemos el planeta para tener un futuro sano y libre de contaminantes"))
-            entradas.add(MasInfoBlog("Limpieza en el ambiente", "Expresa la importancia de limpiar", R.drawable.articulo_3_3, "Limpieza Profunda","Mario Costa",R.drawable.perfil3,"Se tiene que tener un ambiente limpio para una vida limpia"))
-            entradas.add(MasInfoBlog("Conciencia ante todo", "Animan a la gente a plantar y a tener conciencia", R.drawable.articulo_4_4, "Plantas en todas partes","Maria Peña",R.drawable.perfil4,"Cuidemos el planeta para tener un futuro sano y libre de contaminantes"))
+    private fun getExtension(uri: Uri): String {
+        val cr = contentResolver
+        val mimeType = MimeTypeMap.getSingleton()
+        return mimeType.getExtensionFromMimeType(cr.getType(uri)).toString()
+    }
 
-        }
-        class EntradasActividadAdapter: BaseAdapter {
-            var context: Context? =null
-            var entradas = ArrayList<MasInfoBlog>()
 
-            constructor(context: Context, entradas: ArrayList<MasInfoBlog>){
-                this.context = context
-                this.entradas = entradas
-            }
-            override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-                var entrada = entradas[position]
-                var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                var vista = inflator.inflate(R.layout.actividades_celdas, null)
-                Log.d("objeto", entrada.toString())
-                vista.titulo_comentario.setText(entrada.textoTitulo)
-                vista.comentario.setText(entrada.contenido)
-                vista.picture_set3.setImageResource(entrada.imagen)
+    private fun getFileExtension(uri: Uri): String? {
+        val cR = contentResolver
+        val mime = MimeTypeMap.getSingleton()
+        return mime.getExtensionFromMimeType(cR.getType(uri))
+    }
 
-                //   vista.lista_contenido.setImageResourse(entrada.imagen)
-                //  vista.button_corazon.setImageResource(R.drawab
-                //  le)
-                vista.picture_set3.setOnClickListener{
-                    var intento = Intent(context, Detalle_articulo::class.java)
-                    intento.putExtra("imagenArticulo", entrada.imagen)
-                    intento.putExtra("titulo",entrada.titulo)
-                    intento.putExtra("autor",entrada.autor)
-                    intento.putExtra("imagen",entrada.imagenDelAutor)
-                    intento.putExtra("contenido",entrada.contenido)
-                    context!!.startActivity(intento)
+    private fun uploadFile() {
+        if (filePath != null) {
+            val fileReference = mStorageRef.child(
+                System.currentTimeMillis()
+                    .toString() + "." + getFileExtension(filePath)
+            )
+            uploadTask = fileReference.putFile(filePath)
+                .addOnSuccessListener { taskSnapshot ->
+
+                    Toast.makeText(this, "Upload successful", Toast.LENGTH_LONG)
+                        .show()
+                    val upload = Agrega(
+                        tituloArticulo.text.toString().trim(), detalleArticulo.text.toString().trim(),
+                        taskSnapshot.toString()
+                    )
+                    val uploadId: String = mDatabaseRef.push().key.toString()
+                    mDatabaseRef.child(uploadId).setValue(upload)
                 }
-                return vista
-            }
+                .addOnFailureListener { e ->
+                    Toast.makeText(
+                        this,
+                        e.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+        } else {
+            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show()
+        }
+    }
 
-            override fun getItem(position: Int): Any {
-                return 1
-            }
 
-            override fun getItemId(position: Int): Long {
-                return 1
-            }
+    private fun Filechooser() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent,1)
+    }
 
-            override fun getCount(): Int {
-                return entradas.size
-            }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data!= null && data.data!= null) {
+            filePath = data.data!!
+            imagen.setImageURI(filePath)
+        }
+    }
+
+
+
+
+
+    /*private fun guardar() {
+        val titulo= tituloArticulo.text.toString().trim()
+        val detalle= detalleArticulo.text.toString().trim()
+
+
+        if(titulo.isEmpty()){
+            tituloArticulo.error= "Ingrese un titulo para el articulo"
+            return
+        }
+        if(detalle.isEmpty()){
+            detalleArticulo.error= "Ingrese el cuerpo del articulo"
+            return
+        }
+        val ref= FirebaseDatabase.getInstance().getReference("Actividad")
+        val actId= ref.push().key
+        val actividad = Agrega(actId.toString(),titulo, detalle )
+        ref.child(actId.toString()).setValue(actividad).addOnCompleteListener {
+            Toast.makeText(applicationContext,"Se agrego la actividad correctamente", Toast.LENGTH_SHORT).show()
         }
 
     }
+*/
+
+}
 

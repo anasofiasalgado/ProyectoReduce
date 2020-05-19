@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "421160328451",
+    "firebase_url": "https://myreduce-ec827.firebaseio.com",
+    "project_id": "myreduce-ec827",
+    "storage_bucket": "myreduce-ec827.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421160328451:android:c27f3e0db6b97e1428dd36",
+        "android_client_info": {
+          "package_name": "salgadomontoya.anasofia.myreduce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421160328451-qkf94fq0pj554v4jge9g3pv4qtoa831k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "salgadomontoya.anasofia.myreduce",
+            "certificate_hash": "0d953b46823116df82281cb1378324693df46ab9"
+          }
+        },
+        {
+          "client_id": "421160328451-ctojv5n7nus3gh42hnflehrgqmfg7uh2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7xIN33Fw9n2sJiYxemZV2a5v6WUYjIAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421160328451-ctojv5n7nus3gh42hnflehrgqmfg7uh2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

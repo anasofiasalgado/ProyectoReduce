@@ -12,6 +12,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageButton
 import kotlinx.android.synthetic.main.activity_home_blog.*
 import kotlinx.android.synthetic.main.celda_imagen.view.*
+import kotlinx.android.synthetic.main.cell_pictures.*
 import kotlinx.android.synthetic.main.cell_pictures.view.*
 
 class HomeBlog : AppCompatActivity() {
@@ -35,9 +36,9 @@ class HomeBlog : AppCompatActivity() {
         list_entradas.adapter = adaptador
     }
     fun cargarEntradas(){
-        entradas.add(EntradaBlog( R.drawable.articulo_2_2, true, true, "Mundo Saludable","Lucia Mendez",R.drawable.perfil2,"Cuidemos el planeta para tener un futuro sano y libre de contaminantes"))
-        entradas.add(EntradaBlog( R.drawable.articulo_3_3, true, true, "Limpieza Profunda","Mario Costa",R.drawable.perfil3,"Se tiene que tener un anombiente limpio para una vida limpia"))
-        entradas.add(EntradaBlog( R.drawable.articulo_4_4, true, true, "Plantas en todas partes","Maria Peña",R.drawable.perfil4,"Cuidemonos el planeta para tener un futuro sano y libre de contaminantes"))
+        entradas.add(EntradaBlog( R.drawable.articulo_5_5, true, true, "Urbanización extrema","Lucia Mendez",R.drawable.perfil2,"Todo hoy en día esta rodeado de smog y de humos nocivos"))
+        entradas.add(EntradaBlog( R.drawable.articulo_6_6, true, true, "Cielo en tierra","Mario Costa",R.drawable.perfil3,"Limpiemos nuestros hogares, ya que ese es el primer paso"))
+        entradas.add(EntradaBlog( R.drawable.articulo_7_7, true, true, "Luces","Maria Peña",R.drawable.perfil4,"No desperdiciemos la electricidad"))
     }
 
     class HomeEntradasAdapter: BaseAdapter {

@@ -28,6 +28,7 @@
         android:textColor="@color/Greenish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/agrega"
         />
     </LinearLayout>
 
@@ -37,13 +38,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="Nombre del articulo"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:hint="Titulo del articulo"
+        android:id="@+id/nombre_articulo"
         android:layout_height="wrap_content"/>
 
     <LinearLayout
@@ -52,15 +47,81 @@
         android:orientation="vertical"
         android:layout_gravity="center">
 
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detalle del articulo"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Inserte aqui su articulo"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/detalles_aritulo"
+            android:textSize="20sp"/>
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:id="@+id/layout2"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:background="@color/whiteish"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                android:id="@+id/picture_set3"
+                android:background="@drawable/icono_" />
+        </LinearLayout>
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button"
+            android:id="@+id/button_guardar"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/whiteish"
+            android:text="Guardar"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button2"
+            android:text="Agregar"
+            android:id="@+id/button_agrega"
+            android:textColor="@color/whiteish"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
     <ListView
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:id="@+id/lista_entradas_actividad"
-      />
-
-    </LinearLayout>
+        android:id="@+id/lista_actividades"
+        />
 
 </LinearLayout>

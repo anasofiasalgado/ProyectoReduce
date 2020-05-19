@@ -12,7 +12,6 @@ class Detalle_articulo : AppCompatActivity() {
 
         val bundle = intent.extras
         if (bundle != null){
-
             imagen_articulo.setImageResource(bundle.getInt("imagenArticulo"))
             titulo.setText(bundle.getString("titulo"))
             autor.setText(bundle.getString("autor"))

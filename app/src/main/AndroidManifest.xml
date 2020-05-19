@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="salgadomontoya.anasofia.myreduce">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -10,16 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AgregarActividad"></activity>
-        <activity android:name=".MasArticulos" />
         <activity android:name=".Principal_Activity" />
-        <activity android:name=".Inicio_Google" />
         <activity android:name=".PaginaPrincipal" />
         <activity android:name=".HomeBlog" />
         <activity android:name=".Detalle_articulo" />
-        <activity android:name=".Datos" />
-        <activity android:name=".Crear_cuenta" />
-        <activity android:name=".crear_cuenta" />
-        <activity android:name=".activity_crear_cuenta" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

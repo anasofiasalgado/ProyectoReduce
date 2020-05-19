@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateUI(account: GoogleSignInAccount?) {
         if(account!= null){
-            val intent= Intent(this, Principal_Activity::class.java)
+            val intent= Intent(this, PaginaPrincipal::class.java)
             intent.putExtra("nombreUsuario", account.displayName)
             startActivity(intent)
 
